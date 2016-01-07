@@ -11,11 +11,12 @@ import android.widget.Spinner;
 
 import sidespell.tech.solarsystem.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Spinner spnPlanet;
     private ImageView imgPlanet;
-    private static int[] Planet={R.drawable.mercury,R.drawable.venus,R.drawable.earth, R.drawable.mars,R.drawable.jupiter,R.drawable.saturn,R.drawable.uranus,R.drawable.neptune,R.drawable.pluto};
+    private static int[] Planet={R.drawable.mercury,R.drawable.venus,R.drawable.earth,
+            R.drawable.mars,R.drawable.jupiter,R.drawable.saturn,R.drawable.uranus,R.drawable.neptune,R.drawable.pluto};
 
 
     @Override
@@ -26,23 +27,41 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Spinner spnPlanet=(Spinner)findViewById(R.id.spnPlanet);
-        ImageView imgImageView=(ImageView)findViewById(R.id.imgPlanet);
+        spnPlanet = (Spinner) findViewById(R.id.spnPlanet);
+        imgPlanet = (ImageView) findViewById(R.id.imgPlanet);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.planets_array, android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnPlanet.setAdapter(adapter);
+
     }
 
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        spnPlanet.getAdapter().getCount();
-
+        if (spnPlanet.getSelectedItem().toString().equals("Mercury")) {
+            imgPlanet.setImageResource(R.drawable.mercury);
+        }
+        else if (spnPlanet.getSelectedItem().toString().equals("Venus")) {
+            imgPlanet.setImageResource(R.drawable.venus);
+        }
+        else if (spnPlanet.getSelectedItem().toString().equals("Earth")) {
+            imgPlanet.setImageResource(R.drawable.earth);
+        }
+        else if (spnPlanet.getSelectedItem().toString().equals("Mars")) {
+            imgPlanet.setImageResource(R.drawable.mars);
+        }
+        else if (spnPlanet.getSelectedItem().toString().equals("Jupiter")) {
+            imgPlanet.setImageResource(R.drawable.jupiter);
+        }
+        else if (spnPlanet.getSelectedItem().toString().equals("Saturn")) {
+            imgPlanet.setImageResource(R.drawable.saturn);
+        }
+        else if (spnPlanet.getSelectedItem().toString().equals("Uranus")) {
+            imgPlanet.setImageResource(R.drawable.uranus);
+        }
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
